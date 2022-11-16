@@ -3,8 +3,9 @@
 <head>  
     <meta charset="UTF-8">  
     <title>Employee Records</title>  
-     {% load staticfiles %}  
+     {% load static %}  
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>  
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>  
 <body>  
 <table class="table table-striped table-bordered table-sm">  
@@ -12,21 +13,20 @@
     <tr>  
         <th>Menu ID</th>  
         <th>Menu Name</th>  
-        <th>Menu Email</th>  
-        <th>Menu Contact</th>  
-        <th>Actions</th>  
+        <th>Menu description</th>  
+        <th>Menu votes</th>   
     </tr>  
     </thead>  
     <tbody>  
-{% for menu in Menus %}  
+{% for menu in menus %}  
     <tr>  
         <td>{{ menu.Id }}</td>  
         <td>{{ menu.Name }}</td>  
         <td>{{ menu.Description }}</td>  
         <td>{{ menu.Votes }}</td>  
         <td>  
-            <a href="/edit/{{ Menu.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
-            <a href="/delete/{{ Menu.id }}">Delete</a>  
+            <a href="/edit/{{ menu.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+            <a href="/delete/{{ menu.id }}">Delete</a>  
         </td>  
     </tr>  
 {% endfor %}  
@@ -34,6 +34,6 @@
 </table>  
 <br>  
 <br>  
-<center><a href="/emp" class="btn btn-primary">Add New Record</a></center>  
+ <a href="/emp" class="btn btn-primary">Add New Record</a> 
 </body>  
 </html>  

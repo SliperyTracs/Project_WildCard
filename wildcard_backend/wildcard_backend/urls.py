@@ -21,9 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include("next_app.urls")),
     path("", include("django_nextjs.urls")),
-    path('emp', views.create),  
-    path('show',views.show),  
-    path('edit/<int:id>', views.edit),  
-    path('update/<int:id>', views.update),  
-    path('delete/<int:id>', views.delete),  
+    path("api",include("api.urls")),
 ]

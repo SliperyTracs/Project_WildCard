@@ -3,11 +3,11 @@
 <head>  
     <meta charset="UTF-8">  
     <title>Index</title>  
-    {% load staticfiles %}  
+    {% load static %}  
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>  
 </head>  
 <body>  
-<form method="POST" class="post-form" action="/emp">  
+<form method="POST" class="post-form" action="/">  
         {% csrf_token %}  
     <div class="container">  
 <br>  
@@ -18,28 +18,23 @@
     </div>  
   </div>  
     <div class="form-group row">  
-    <label class="col-sm-2 col-form-label">Menu Id:</label>  
-    <div class="col-sm-4">  
-      {{ form.Id }}  
-    </div>  
-  </div>  
-  <div class="form-group row">  
-    <label class="col-sm-2 col-form-label">Menu Name:</label>  
+    <label class="col-sm-2 col-form-label">Menu name:</label>  
     <div class="col-sm-4">  
       {{ form.name }}  
     </div>  
   </div>  
-    <div class="form-group row">  
+  <div class="form-group row">  
     <label class="col-sm-2 col-form-label">Menu description:</label>  
     <div class="col-sm-4">  
       {{ form.description }}  
     </div>  
   </div>  
     <div class="form-group row">  
-    <label class="col-sm-2 col-form-label">Menu votes:</label>  
+    <label class="col-sm-2 col-form-label">Menu vote:</label>  
     <div class="col-sm-4">  
-      {{ form.votes }}  
+      {{ form.vote }}  
     </div>  
+  </div>  
   </div>  
     <div class="form-group row">  
     <label class="col-sm-1 col-form-label"></label>  
