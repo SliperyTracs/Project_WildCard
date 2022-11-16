@@ -19,7 +19,7 @@ from django.urls import path
 from next_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",include("next_app.urls")),
-    path("", include("django_nextjs.urls")),
-    path("api",include("api.urls")),
+    path("/next",include("next_app.urls")),
+    path("/next", include("django_nextjs.urls")),
+    path("",include("api.urls")),
 ]
