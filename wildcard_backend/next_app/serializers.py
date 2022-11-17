@@ -3,11 +3,35 @@
 from rest_framework import serializers
  
 # import model from models.py
-from .models import Menus
+from .models import *
  
-# Create a model serializer
-class Serializer(serializers.HyperlinkedModelSerializer):
+#Menu serializer
+class MenuSerializer(serializers.ModelSerializer):
     # specify model and fields
     class Meta:
         model = Menus
-        fields = ('title', 'description')
+        fields = "__all__"
+#Week serializer
+class WeekSerializer(serializers.ModelSerializer):
+    # specify model and fields
+    class Meta:
+        model = Week
+        fields = "__all__"
+#Poll serializer
+class PollSerializer(serializers.ModelSerializer):
+    # specify model and fields
+    class Meta:
+        model = Poll
+        fields = "__all__"
+#Votes serializer
+class VotesSerializer(serializers.ModelSerializer):
+    # specify model and fields
+    class Meta:
+        model = Votes
+        fields = "__all__"
+#Selection serializer
+class SelectionSerializer(serializers.ModelSerializer):
+    # specify model and fields
+    class Meta:
+        model = Selection
+        fields = "__all__"
