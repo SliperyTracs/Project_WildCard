@@ -8,12 +8,12 @@ class Menus(models.Model):
         db_table = "menus" 
 class Week(models.Model):
     Week_no = models.IntegerField()
-    DateCreated = models.DateField()
+    DateCreated = models.DateField(auto_now=True, null=True)
     class Meta:  
         db_table = "week" 
 class Poll(models.Model):
     Poll_no = models.IntegerField()
-    DateCreated = models.DateField()
+    DateCreated = models.DateField(auto_now=True, null=True)
     Week = models.ForeignKey(Week, on_delete=models.CASCADE)
     class Meta:  
         db_table = "poll"

@@ -11,7 +11,8 @@ from . import views
 # specify URL Path for rest_framework
 urlpatterns = [
     path("", index, name="index"),
-    re_path(r'api/(?<model>)$',MenuHttpResponse)
+    path('api/<str:Model>',apiHttpResponse),
+    path('api/<str:Model>/<int:pk>',apiDetails),
 ]
 
 
