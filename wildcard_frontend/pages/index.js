@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Layout from '../Component/layout'
+import {handler} from './api/index'
 
-export default function Home() {
+export default function Home( props ) {
   return (
     <Layout>
     <div className={styles.container}>
@@ -11,18 +12,12 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to Project wildcard
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
+          <a className={styles.card}>
+    
           </a>
 
           <a href="https://nextjs.org/learn" className={styles.card}>
@@ -68,3 +63,18 @@ export default function Home() {
     </Layout>
   )
 }
+export async function getStaticProps(){
+
+  const response = await fetch("http://127.0.0.1:8000/api/menu");
+  const data = await response.json();
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+  return {
+    props: {data}
+  }
+}
+
+

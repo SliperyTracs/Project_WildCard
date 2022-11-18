@@ -1,6 +1,6 @@
 
 import Head from "next/head";
-import Layout from "../../Component/layout";
+import Layout from "../../../Component/layout";
 
 
 function ranking(){
