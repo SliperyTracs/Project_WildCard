@@ -21,5 +21,5 @@ export async function results(url) {
 export async function handler(url) {
     const response = await fetch(url);
     const data = await response.json();
-    return data.results
+    return data
 }

@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'wildcard_db',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': 'T0327587b!',
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }
@@ -142,9 +142,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'boot'),
 ]
-CSRF_COOKIE_SECURE = False
-CSRF_COOKIE_HTTPONLY = False
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8000',
-)
+
+CORS_ALLOW_ALL_ORIGINS = True
