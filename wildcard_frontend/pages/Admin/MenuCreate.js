@@ -23,7 +23,8 @@ export default function MenuCreate({}){
     return (
         <>
         <h1>CreateMenu</h1>
-            <form action="/admin/allmenu" onSubmit={handleOnSubmit} method="POST">
+            
+            <form action="/Admin/MenuAll" onSubmit={handleOnSubmit} method="POST">
             <label for="first">Menu Name:</label>
             <input type="text" 
             id="first" 

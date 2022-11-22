@@ -1,11 +1,20 @@
 import styles from "../styles/MenuList.module.css"
 import Link from "next/link"
-export default function MenuList({Menus}){
+export default function MenuList({Menus, draggable}){
+
     return(
         <main>
-            <ul className="list">
-                {Menus.map(menu => {
-                    return (<li className={styles.card}><Link href="/"><a rel="noreferrer nofollower"><h2>{menu.Name}</h2>{menu.Description}</a> </Link></li>)
+            <ul className={styles.list}>
+                {Menus?.map(menu => {
+                    
+                    return (
+                    <li className={styles.card} key={menu.id}>
+                    <Link href="/" rel="noreferrer nofollower">
+                        <h2>{menu.Name}</h2>
+                        {menu.Description}
+                    </Link>
+                    <input className={styles.input} type="checkbox" />
+                    </li>)
                 })}
             </ul>
         </main>

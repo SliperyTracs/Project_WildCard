@@ -1,4 +1,20 @@
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.ListContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    top:500px;
+    background-color: orange;
+    border: 3px solid red;
 
+}
 .list{
     display:flex;
     align-items: center;
@@ -21,9 +37,4 @@
     border-radius:50px;
     cursor: grab;
 
-}
-.input{
-    margin-left:1rem;
-    height:2rem;
-    width:2rem;
 }
