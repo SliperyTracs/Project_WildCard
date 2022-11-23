@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'wildcard_db',
         'USER': 'root',
-        'PASSWORD': 'T0327587b!',
+        'PASSWORD': '1234',
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }
