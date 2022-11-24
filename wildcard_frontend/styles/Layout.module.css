@@ -4,3 +4,9 @@
     display:flex;
     align-items: center;
 }
+.container{
+    margin:10px auto;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}

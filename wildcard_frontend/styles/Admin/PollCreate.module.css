@@ -1,20 +1,25 @@
 .container{
     display:flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
 }
 .ListContainer{
     display:flex;
     justify-content: center;
     align-items: center;
+    margin:40px auto;
 }
-.btn{
-    top:500px;
-    background-color: orange;
-    border: 3px solid red;
-
-}
+/* .btn{
+    height: 5vw;
+    width: 10vw;
+    font-size: 4vw;
+    border: 5px solid #000;
+    border-radius: 50px;
+    margin:10px auto;
+    padding: 10px;;
+    text-decoration: none;
+    color:#000
+} */
 .list{
     display:flex;
     align-items: center;

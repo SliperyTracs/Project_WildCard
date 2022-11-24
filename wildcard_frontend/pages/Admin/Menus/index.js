@@ -1,6 +1,6 @@
-import MenuList from "../../Component/menulist";
+import MenuList from "../../../Component/menulist";
 
-import {handler} from "../api"
+import {handler} from "../../api"
 export default function AllMenu( props ){
     return (
         <>

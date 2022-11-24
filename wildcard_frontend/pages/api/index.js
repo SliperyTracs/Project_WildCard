@@ -23,3 +23,6 @@ export async function handler(url) {
     const data = await response.json();
     return data
 }
+export async function Posthandler(url){
+  
+}
