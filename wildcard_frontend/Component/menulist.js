@@ -13,7 +13,7 @@ export default function MenuList({Menus, draggable}){
                         <h2>{menu.Name}</h2>
                         {menu.Description}
                     </Link>
-                    <input className={styles.input} type="checkbox" />
+                    
                     </li>)
                 })}
             </ul>

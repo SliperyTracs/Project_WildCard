@@ -5,9 +5,11 @@ import styles from "../../../styles/Admin/PollCreate.module.css"
 import Layout from "../../../Component/layout"
 import MenuList from "../../../Component/menulist"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 export default function PollCreate({Menus}){
-    const PollMenus = new Array()
+    const [PollChange, SetPollChange] = useState([])
+    const PollMenus = new Array();
     const HandleOnSubmit = (e) =>{
         if (PollMenus.length==0){
             {PollMenus?.map(Menus => {
@@ -32,7 +34,10 @@ export default function PollCreate({Menus}){
         }else{
             return
         }
-        }
+    }
+    useEffect(()=>{
+
+    },[PollChange])
     return (
         <Layout>
         
@@ -47,7 +52,8 @@ export default function PollCreate({Menus}){
                         else{
                         PollMenus.push(menu)
                         }
-                        console.log(PollMenus)
+                        console.log(PollMenus.length)
+                        SetPollChange(PollMenus.length)
                     }
                     return (
                     <li className={styles.card} key={menu.id}>
@@ -59,11 +65,10 @@ export default function PollCreate({Menus}){
                     </li>)
                 })}
             </ul>
-            
             <MenuList {...PollMenus}/>
             </div>
             <div>
-            <Link className={styles.btn} href="/admin/Polls" onClick={HandleOnSubmit}>Submit</Link>
+            <Link className={styles.btn} href="/admin/Polls/CreatePoll" onClick={HandleOnSubmit}>Submit</Link>
             </div> 
 
         </Layout>
