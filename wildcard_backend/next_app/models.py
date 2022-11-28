@@ -4,6 +4,7 @@ class Menus(models.Model):
     Name = models.CharField(max_length=200)  
     Description = models.CharField(max_length=255) 
     DateCreated=models.DateField(auto_now=True, null=True)
+    Image = models.CharField(max_length=255)
     class Meta:  
         db_table = "menus" 
 class Week(models.Model):

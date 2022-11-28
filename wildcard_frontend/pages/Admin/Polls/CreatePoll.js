@@ -8,10 +8,11 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export default function PollCreate({Menus}){
-    const [PollChange, SetPollChange] = useState([])
+    const [PollChange, SetPollChange] = useState(0)
     const PollMenus = new Array();
     const HandleOnSubmit = (e) =>{
-        if (PollMenus.length==0){
+        console.log(PollMenus)
+        if (PollMenus.length != 0){
             {PollMenus?.map(Menus => {
                 
             e.preventDefault()
@@ -30,7 +31,7 @@ export default function PollCreate({Menus}){
 
             })
             }
-            Router.push('/admin/Polls')
+            // Router.push('/admin/Polls')
         }else{
             return
         }
@@ -53,7 +54,7 @@ export default function PollCreate({Menus}){
                         PollMenus.push(menu)
                         }
                         console.log(PollMenus.length)
-                        SetPollChange(PollMenus.length)
+                        
                     }
                     return (
                     <li className={styles.card} key={menu.id}>
@@ -68,7 +69,7 @@ export default function PollCreate({Menus}){
             <MenuList {...PollMenus}/>
             </div>
             <div>
-            <Link className={styles.btn} href="/admin/Polls/CreatePoll" onClick={HandleOnSubmit}>Submit</Link>
+            <button className="btn btn-primary btn-lg " onClick={HandleOnSubmit}>Submit</button>
             </div> 
 
         </Layout>
