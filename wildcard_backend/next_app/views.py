@@ -27,13 +27,11 @@ serializers = {
 def apiHttpResponse(request,Model):
     if request.method == 'GET':
         model = models[Model].objects.all()
-
         serializer = serializers[Model](model, many=True)
         return JsonResponse(serializer.data, safe=False)
         # 'safe=False' for objects serialization
-
-    elif request.method == 'POST':
         
+    elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = serializers[Model](data=data)
         if serializer.is_valid():
@@ -55,7 +53,6 @@ def apiDetails(request,Model, pk):
     if request.method == 'GET': 
         serializer = serializers[Model](model)
         return JsonResponse(serializer.data)
- 
     elif request.method == 'PUT': 
         data = JSONParser().parse(request) 
         serializer = serializers[Model](model, data=data) 

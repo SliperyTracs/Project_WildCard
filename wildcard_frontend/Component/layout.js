@@ -6,12 +6,12 @@ import styles from "../styles/Layout.module.css"
 export default function Layout({children}
     ){
     return(
-        <>
+        <div>
         <NavBar/>
         <main className={styles.container}>
         {children}
         </main>
-        </>
+        </div>
         
     )
 }

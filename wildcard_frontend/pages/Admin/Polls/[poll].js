@@ -1,17 +1,24 @@
 import Layout from "../../../Component/layout"
+import { handler } from "../../api"
 
-export default function Poll({Poll_id}){
+export default function Poll({id}){
    return(
     <Layout>
-        <h1>Poll {Poll_id}</h1>
+        <main>
+        <h1>Poll {id}</h1>
+            
+        </main>
     </Layout>
    )
 }
 export async function getServerSideProps( { params } ) {
-
+    const poll = await handler(`http://127.0.0.1:8000/api/poll/${params.poll}`)
+    console.log(poll)
+    const Selections = await handler("http://127.0.0.1:8000/api/selection")
+    
     return {
         props: {
-            id: params.id
+            id: params.poll
         }
     }
 }

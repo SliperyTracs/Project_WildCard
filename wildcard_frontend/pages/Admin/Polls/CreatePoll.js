@@ -8,8 +8,8 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export default function PollCreate({Menus}){
-    const [PollChange, SetPollChange] = useState(0)
-    const PollMenus = new Array();
+    const [PollMenus, SetPollMenus] = useState([])
+
     const HandleOnSubmit = (e) =>{
         console.log(PollMenus)
         if (PollMenus.length != 0){
@@ -37,8 +37,8 @@ export default function PollCreate({Menus}){
         }
     }
     useEffect(()=>{
-
-    },[PollChange])
+        console.log("useEffect working")
+    },[PollMenus])
     return (
         <Layout>
         
@@ -51,17 +51,18 @@ export default function PollCreate({Menus}){
                             return alert(`Menu alrdy contains selected`)
                         }
                         else{
-                        PollMenus.push(menu)
+                        SetPollMenus.push(menu)
                         }
+                        SetPollMenus + 1
                         console.log(PollMenus.length)
                         
                     }
                     return (
                     <li className={styles.card} key={menu.id}>
-                    <Link href="/" rel="noreferrer nofollower">
+                    <Link href="/" rel="noreferrer nofollower"><span>
                         <h2>{menu.Name}</h2>
                         {menu.Description}
-                    </Link>
+                    </span></Link>
                     <input className={styles.input} onClick={AddtoPoll} type="button" value="+"/>
                     </li>)
                 })}

@@ -9,17 +9,7 @@
     align-items: center;
     margin:40px auto;
 }
-/* .btn{
-    height: 5vw;
-    width: 10vw;
-    font-size: 4vw;
-    border: 5px solid #000;
-    border-radius: 50px;
-    margin:10px auto;
-    padding: 10px;;
-    text-decoration: none;
-    color:#000
-} */
+
 .list{
     display:flex;
     align-items: center;
