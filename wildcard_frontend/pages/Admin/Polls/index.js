@@ -10,7 +10,7 @@ export default function AllPolls( {Polls} ){
         <h1>All Polls </h1>
         <Link href="Polls/CreatePoll" className="bi bi-plus-circle"><span>Create poll </span> </Link>
         <button>Export all Polls</button>
-        <ul styles={styles.list}>
+        <ul>
         {Polls?.map((poll) => {
           return (
               <li className={styles.card} key={poll.id}>
@@ -21,6 +21,7 @@ export default function AllPolls( {Polls} ){
               </li>)
             })}
         </ul>
+        <button onClick={DownloadExcel}> Download Results </button>
         </Layout>
     )
 }

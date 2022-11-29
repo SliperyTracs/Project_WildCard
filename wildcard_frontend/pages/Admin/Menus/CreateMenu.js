@@ -1,17 +1,18 @@
 import { useState } from "react"
-
+import Layout from "../../../Component/layout"
 export default function MenuCreate({}){
     const [Name , setName] = useState("");
     console.log(`Name`,Name)
     const [Description , setDescription] = useState("");
-
+    const [Image , setImage] = useState("");
     const handleOnSubmit = (e) => {
         e.preventDefault()
         const options ={
             method: "POST",
             body: JSON.stringify({
                 Name,
-                Description
+                Description,
+                Image
             }),
             headers:{
                 'Content-Type':'application/json'
@@ -21,7 +22,7 @@ export default function MenuCreate({}){
         then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
     }
     return (
-        <>
+        <Layout>
         <h1>CreateMenu</h1>
             
             <form action="/Admin/MenuAll" onSubmit={handleOnSubmit} method="POST">
@@ -40,9 +41,16 @@ export default function MenuCreate({}){
             }}
             id="last" 
             name="Description" />
+            <label for="last">Menu Image:</label>
+            <input type="text"
+            onChange={(event)=>{
+                setImage(event.target.value)
+            }}
+            id="last" 
+            name="Image" />
             <button type="submit">Submit</button>
             </form>
-        </>
+        </Layout>
 
     )
 }

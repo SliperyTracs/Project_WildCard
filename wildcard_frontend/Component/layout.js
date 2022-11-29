@@ -8,7 +8,7 @@ export default function Layout({children}
     return(
         <div>
         <NavBar/>
-        <main className={styles.container}>
+        <main>
         {children}
         </main>
         </div>

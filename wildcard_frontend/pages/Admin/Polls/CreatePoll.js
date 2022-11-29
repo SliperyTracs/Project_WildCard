@@ -8,8 +8,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export default function PollCreate({Menus}){
-    const [PollMenus, SetPollMenus] = useState([])
-
+    const PollMenus = new Array()
     const HandleOnSubmit = (e) =>{
         console.log(PollMenus)
         if (PollMenus.length != 0){
@@ -42,7 +41,7 @@ export default function PollCreate({Menus}){
     return (
         <Layout>
         
-        <div><h1>PollCreate</h1></div>
+            <h1>PollCreate</h1>
             <div className={styles.ListContainer}>
             <ul className={styles.list}>
                 {Menus?.map(menu => {
@@ -51,9 +50,8 @@ export default function PollCreate({Menus}){
                             return alert(`Menu alrdy contains selected`)
                         }
                         else{
-                        SetPollMenus.push(menu)
+                        PollMenus.push(menu)
                         }
-                        SetPollMenus + 1
                         console.log(PollMenus.length)
                         
                     }
@@ -80,6 +78,7 @@ export default function PollCreate({Menus}){
 export async function getServerSideProps(){
     const Menus = await handler("http://127.0.0.1:8000/api/menu")
     const Polls = await handler("http://127.0.0.1:8000/api/poll")
+
     return {
         props: { 
             Menus,
