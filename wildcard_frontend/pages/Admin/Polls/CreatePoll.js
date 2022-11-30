@@ -6,9 +6,10 @@ import Layout from "../../../Component/layout"
 import MenuList from "../../../Component/menulist"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { CallTracker } from "assert"
 
 export default function PollCreate({Menus}){
-    const PollMenus = new Array()
+    const [PollMenus, setPollmenus] = useState([]);
     const HandleOnSubmit = (e) =>{
         console.log(PollMenus)
         if (PollMenus.length != 0){
@@ -35,9 +36,12 @@ export default function PollCreate({Menus}){
             return
         }
     }
-    useEffect(()=>{
-        console.log("useEffect working")
-    },[PollMenus])
+    function HandleOnCheck(e) {
+        const menu = e.target.value;
+        console.log(menu);
+        setPollmenus([...PollMenus,menu]);
+        console.log(PollMenus)
+      }
     return (
         <Layout>
         
@@ -45,27 +49,29 @@ export default function PollCreate({Menus}){
             <div className={styles.ListContainer}>
             <ul className={styles.list}>
                 {Menus?.map(menu => {
-                    const AddtoPoll = (event)=>{
-                        if (PollMenus.includes(menu)){
-                            return alert(`Menu alrdy contains selected`)
-                        }
-                        else{
-                        PollMenus.push(menu)
-                        }
-                        console.log(PollMenus.length)
-                        
-                    }
                     return (
                     <li className={styles.card} key={menu.id}>
-                    <Link href="/" rel="noreferrer nofollower"><span>
+                    <span>
                         <h2>{menu.Name}</h2>
                         {menu.Description}
-                    </span></Link>
-                    <input className={styles.input} onClick={AddtoPoll} type="button" value="+"/>
+                    </span>
+                    <input className={styles.input} onChange={HandleOnCheck} type="checkbox" value={menu.id}/>
                     </li>)
                 })}
             </ul>
-            <MenuList {...PollMenus}/>
+
+            <ul className={styles.list}>
+                {PollMenus.map(pollmenu => {
+                    const menu = Menus.find(obj => obj.id.toString() === pollmenu);
+                        return (
+                            <li className={styles.card} key={menu.id}>
+                            <span>
+                                <h2>{menu.Name}</h2>
+                                {menu.Description}
+                            </span>
+                        </li>)    
+                })}
+            </ul>
             </div>
             <div>
             <button className="btn btn-primary btn-lg " onClick={HandleOnSubmit}>Submit</button>
