@@ -23,6 +23,7 @@ ul{
   align-items: center;
 }
 span{
+  margin:5px;
   display:inline-block;
   color:black;
   text-decoration: dotted;

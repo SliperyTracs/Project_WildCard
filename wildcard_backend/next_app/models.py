@@ -13,7 +13,8 @@ class Week(models.Model):
     class Meta:  
         db_table = "week" 
 class Poll(models.Model):
-    Poll_no = models.IntegerField()
+    StartDate = models.DateField(null=True)
+    EndDate = models.DateField(null=True)
     DateCreated = models.DateField(auto_now=True, null=True)
     Week = models.ForeignKey(Week, on_delete=models.CASCADE)
     class Meta:  

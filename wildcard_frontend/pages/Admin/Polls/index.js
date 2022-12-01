@@ -4,11 +4,24 @@ import styles from "../../../styles/Admin/Polls.module.css"
 import Link from "next/link"
 import {handler} from "../../api"
 export default function AllPolls( {Polls} ){
-
+    const HandleOnClick = (e) => {
+        e.preventDefault()
+        const options ={
+            method: "POST",
+            body: JSON.stringify({
+                
+            }),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }
+        fetch('http://127.0.0.1:8000/api/poll',options).
+        then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
+      }
     return (
         <Layout>
         <h1>All Polls </h1>
-        <Link href="Polls/CreatePoll" className="bi bi-plus-circle"><span>Create poll </span> </Link>
+        <button onClick={HandleOnClick} className="bi bi-plus-circle d-inline-block"></button>
         <button>Export all Polls</button>
         <ul>
         {Polls?.map((poll) => {
@@ -21,19 +34,15 @@ export default function AllPolls( {Polls} ){
               </li>)
             })}
         </ul>
-        <button onClick={DownloadExcel}> Download Results </button>
+        {/* <button onClick={DownloadExcel}> Download Results </button> */}
         </Layout>
     )
 }
 export async function getServerSideProps(){
     const Polls = await handler("http://127.0.0.1:8000/api/poll");
-    const Weeks = await handler("http://127.0.0.1:8000/api/poll");
-    const Selections = await handler("http://127.0.0.1:8000/api/poll");
     return {
       props: { 
-        Polls,
-        Weeks,
-        Selections
+        Polls
       }
     }
   }
