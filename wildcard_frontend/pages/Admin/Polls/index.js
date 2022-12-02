@@ -2,33 +2,42 @@
 import Layout from "../../../Component/layout";
 import styles from "../../../styles/Admin/Polls.module.css"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import {handler} from "../../api"
-export default function AllPolls( {Polls} ){
-    const HandleOnClick = (e) => {
-        e.preventDefault()
-        const options ={
-            method: "POST",
-            body: JSON.stringify({
-                
-            }),
-            headers:{
-                'Content-Type':'application/json'
-            }
-        }
-        fetch('http://127.0.0.1:8000/api/poll',options).
-        then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
+import { useEffect, useState } from "react";
+export default function AllPolls( {Polls,Weeks} ){
+  const [polls , setpolls] = useState([])
+  const router = useRouter();
+  useEffect(()=> {
+    setpolls(Polls)
+  },[polls])
+  const HandleOnCreate = (e) => {
+      e.preventDefault()
+      
+      const options ={
+          method: "POST",
+          body: JSON.stringify({
+              Week:1
+          }),
+          headers:{
+              'Content-Type':'application/json'
+          }
       }
+      fetch('http://127.0.0.1:8000/api/poll',options).
+      then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
+      router.reload(window.location.pathname)
+    }
     return (
         <Layout>
         <h1>All Polls </h1>
-        <button onClick={HandleOnClick} className="bi bi-plus-circle d-inline-block"></button>
+        <button onClick={HandleOnCreate} className="bi bi-plus-circle d-inline-block"></button>
         <button>Export all Polls</button>
-        <ul>
-        {Polls?.map((poll) => {
+        <ul className={styles.list}>
+        {polls?.map((poll) => {
           return (
               <li className={styles.card} key={poll.id}>
                 <Link href={`Polls/${poll.id}`}><span>
-                <h2>Poll {poll.Poll_no}</h2>
+                <h2>Poll {poll.id}</h2>
                 {poll.DateCreated}</span>
                 </Link>
               </li>)
@@ -40,9 +49,11 @@ export default function AllPolls( {Polls} ){
 }
 export async function getServerSideProps(){
     const Polls = await handler("http://127.0.0.1:8000/api/poll");
+    const Weeks = await handler("http://127.0.0.1:8000/api/week")
     return {
       props: { 
-        Polls
+        Polls,
+        Weeks
       }
     }
   }

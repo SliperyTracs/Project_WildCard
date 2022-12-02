@@ -1,5 +1,4 @@
 import { handler } from "../../api"
-import { useRouter } from "next/router"
 import Router from "next/router"
 import styles from "../../../styles/Admin/PollCreate.module.css" 
 import Layout from "../../../Component/layout"
@@ -12,8 +11,9 @@ export default function PollCreate({Menus,Poll_id}){
     const [MenusDisp, setMenusDisp] = useState([]);
     const [StartDate, setStartDate] = useState(new Date());
     const [EndDate, setEndDate] = useState(new Date());
+    
     var current = new Date()
-   
+    
     const HandleOnSubmit = (e) =>{
     
         if (PollMenus.length != 0){
@@ -50,8 +50,9 @@ export default function PollCreate({Menus,Poll_id}){
             fetch(`http://127.0.0.1:8000/api/poll/${Poll_id}`,options).
             then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
             }
-            Router.push('/Admin/Polls')
+            Router.push('/admin/Polls')
         }else{
+            alert("Please fill in the Poll before submitting")
             return
         }
     }
@@ -96,7 +97,6 @@ export default function PollCreate({Menus,Poll_id}){
         }
       }
 
-      console.log(StartDate)
     return (
         <Layout>
         
@@ -147,6 +147,7 @@ export default function PollCreate({Menus,Poll_id}){
 export async function getServerSideProps({params}){
     const Menus = await handler("http://127.0.0.1:8000/api/menu")
     const Polls = await handler("http://127.0.0.1:8000/api/poll")
+    const Selections = await handler("http://127.0.0.1:8000/api/selection")
     const Poll_id = params.poll
     return {
         props: { 
