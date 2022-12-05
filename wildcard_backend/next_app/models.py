@@ -20,7 +20,7 @@ class Poll(models.Model):
     class Meta:  
         db_table = "poll"
 class Votes(models.Model):
-    Total_votes = models.IntegerField()
+    Votes = models.IntegerField()
     Menus = models.ForeignKey(Menus, on_delete=models.CASCADE) 
     Poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     class Meta:  

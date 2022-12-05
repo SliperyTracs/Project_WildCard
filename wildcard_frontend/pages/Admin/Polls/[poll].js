@@ -136,9 +136,7 @@ export default function PollCreate({Menus,Poll_id}){
                 })}
             </ul>
             </div>
-            <div>
             <button className="btn btn-primary btn-lg" onClick={HandleOnSubmit}>Submit</button>
-            </div> 
 
         </Layout>
         )
