@@ -9,11 +9,10 @@ export default function AllPolls( {Polls,Weeks} ){
   const [polls , setpolls] = useState([])
   const router = useRouter();
   useEffect(()=> {
-    setpolls(Polls)
-  },[polls])
+    setpolls(Polls.map((poll) => poll))
+  },[])
   const HandleOnCreate = (e) => {
       e.preventDefault()
-      
       const options ={
           method: "POST",
           body: JSON.stringify({
@@ -23,9 +22,10 @@ export default function AllPolls( {Polls,Weeks} ){
               'Content-Type':'application/json'
           }
       }
-      fetch('http://127.0.0.1:8000/api/poll',options).
-      then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
-      router.reload(window.location.pathname)
+      const update = fetch('http://127.0.0.1:8000/api/poll',options).
+      then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error()).finally(router.reload)
+
+      
     }
     return (
         <Layout>

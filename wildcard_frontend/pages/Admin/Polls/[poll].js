@@ -7,20 +7,28 @@ import { useEffect, useState } from "react"
 
 
 export default function PollCreate({Menus,Selections,Poll_id}){
-    const MenusInPoll = new Array()
     const [Loading, setLoading] = useState(true)
     const [PollMenus, setPollmenus] = useState([]);
     const [MenusDisp, setMenusDisp] = useState([]);
+    const [PollSelections,setPollSelections] = useState([])
     const [StartDate, setStartDate] = useState(new Date());
     const [EndDate, setEndDate] = useState(new Date());
     
     var current = new Date()
     
     const HandleOnSubmit = (e) =>{
-    
+        const MenusInPoll = new Array()
+        
+        {Selections?.map(selection=>{
+            if (selection.Poll.toString() == Poll_id){
+                MenusInPoll.push(selection.id.toString())
+            }
+        })}
+        setPollSelections(MenusInPoll.map((id)=>id))
+        MenusInPoll.length = 0
+
         if (PollMenus.length != 0){
             {PollMenus?.map(menu_id => {
-                
             e.preventDefault()
             const options ={
             method: "POST",
@@ -58,18 +66,22 @@ export default function PollCreate({Menus,Selections,Poll_id}){
             return
         }
     }
+    function getPollSelections(setArray){
+        const MenusInPoll = new Array()
+        {Selections?.map(selection=>{
+            if (selection.Poll.toString() == Poll_id){
+                MenusInPoll.push(selection.Menus.toString())
+            }
+        })}
+        setArray(MenusInPoll.map((id)=>id))
+        MenusInPoll.length = 0
+    }
     useEffect(()=>{
         if (Menus.length>0){
             setLoading(false)
             setMenusDisp(Menus.map(({id}) => id.toString()));
             setStartDate( current.getFullYear() + "-" + current.getMonth() + "-" + current.getDate() )
-            {Selections?.map(selection=>{
-                if (selection.Poll.toString() == Poll_id){
-                    MenusInPoll.push(selection.Menus.toString())
-                }
-            })}
-            setPollmenus(MenusInPoll.map((id)=>id))
-            MenusInPoll.length = 0
+            getPollSelections(setPollmenus,Menus)
             console.log(PollMenus)
             {PollMenus.map(Menuid => {
                 setMenusDisp(current =>
