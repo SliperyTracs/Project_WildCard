@@ -16,7 +16,6 @@ export default function Ranking({Menus,Polls,Selections,Votes}){
     })
     setMenusPoll(MenusId.map((id) => id))
     console.log(MenusPoll)
-    MenusId.length=0
   },[])
   const HandleOnCheck = (e) => {
     const menu = e.target.value

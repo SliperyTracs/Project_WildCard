@@ -6,7 +6,9 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 
-export default function PollCreate({Menus,Poll_id}){
+export default function PollCreate({Menus,Selections,Poll_id}){
+    const MenusInPoll = new Array()
+    const [Loading, setLoading] = useState(true)
     const [PollMenus, setPollmenus] = useState([]);
     const [MenusDisp, setMenusDisp] = useState([]);
     const [StartDate, setStartDate] = useState(new Date());
@@ -50,17 +52,42 @@ export default function PollCreate({Menus,Poll_id}){
             fetch(`http://127.0.0.1:8000/api/poll/${Poll_id}`,options).
             then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
             }
-            Router.push('/admin/Polls')
+            Router.push('/Admin/Polls')
         }else{
             alert("Please fill in the Poll before submitting")
             return
         }
     }
     useEffect(()=>{
-        setMenusDisp(Menus.map(({id}) => id.toString()));
-        setStartDate( current.getFullYear() + "-" + current.getMonth() + "-" + current.getDate() )
-        console.log(StartDate)
-    },[])
+        if (Menus.length>0){
+            setLoading(false)
+            setMenusDisp(Menus.map(({id}) => id.toString()));
+            setStartDate( current.getFullYear() + "-" + current.getMonth() + "-" + current.getDate() )
+            {Selections?.map(selection=>{
+                if (selection.Poll.toString() == Poll_id){
+                    MenusInPoll.push(selection.Menus.toString())
+                }
+            })}
+            setPollmenus(MenusInPoll.map((id)=>id))
+            MenusInPoll.length = 0
+            console.log(PollMenus)
+            {PollMenus.map(Menuid => {
+                setMenusDisp(current =>
+                    current.filter(id => {
+                        return id.toString() !== Menuid.toString()
+                    }),)
+                console.log(MenusDisp)
+            })}
+        }
+        else{
+            setLoading(true)
+            return(
+                <div>
+                    Loading...
+                </div>
+            )
+        }
+    },[Loading])
       
     function HandleOnCheckDisp(e) {
         const menu = e.target.value;
@@ -141,15 +168,16 @@ export default function PollCreate({Menus,Poll_id}){
         </Layout>
         )
     }
-
 export async function getServerSideProps({params}){
     const Menus = await handler("http://127.0.0.1:8000/api/menu")
     const Polls = await handler("http://127.0.0.1:8000/api/poll")
     const Selections = await handler("http://127.0.0.1:8000/api/selection")
     const Poll_id = params.poll
+    
     return {
         props: { 
             Menus,
+            Selections,
             Poll_id
         }
     }

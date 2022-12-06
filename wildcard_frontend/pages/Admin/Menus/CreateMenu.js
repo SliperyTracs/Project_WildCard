@@ -7,7 +7,7 @@ export default function MenuCreate({}){
     const [Image , setImage] = useState("");
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        const options ={
+        const menus ={
             method: "POST",
             body: JSON.stringify({
                 Name,
@@ -18,8 +18,9 @@ export default function MenuCreate({}){
                 'Content-Type':'application/json'
             }
         }
-        fetch('http://127.0.0.1:8000/api/menu',options).
+        fetch('http://127.0.0.1:8000/api/menu',menus).
         then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
+        
     }
     return (
         <Layout>
