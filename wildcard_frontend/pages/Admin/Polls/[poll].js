@@ -6,30 +6,39 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 
-export default function PollCreate({Menus,Selections,Poll_id}){
+export default function PollCreate({Menus,Poll,Selections,Poll_id}){
     const [Loading, setLoading] = useState(true)
     const [PollMenus, setPollmenus] = useState([]);
     const [MenusDisp, setMenusDisp] = useState([]);
     const [PollSelections,setPollSelections] = useState([])
     const [StartDate, setStartDate] = useState(new Date());
     const [EndDate, setEndDate] = useState(new Date());
-    
+    const MenusInPoll = new Array()
     var current = new Date()
     
     const HandleOnSubmit = (e) =>{
-        const MenusInPoll = new Array()
         
+        console.log(Selections)
         {Selections?.map(selection=>{
+            
             if (selection.Poll.toString() == Poll_id){
-                MenusInPoll.push(selection.id.toString())
+                MenusInPoll.push(selection.id)
             }
         })}
-        setPollSelections(MenusInPoll.map((id)=>id))
+        console.log(MenusInPoll)
+        {MenusInPoll?.map(id => {
+            const options ={
+                method: 'DELETE'
+                }
+                fetch(`http://127.0.0.1:8000/api/selection/${id}`,options).
+                then(response=>console.log(`response`,response)).catch(console.error())
+    
+        })}
         MenusInPoll.length = 0
-
+        e.preventDefault()
         if (PollMenus.length != 0){
             {PollMenus?.map(menu_id => {
-            e.preventDefault()
+            
             const options ={
             method: "POST",
             body: JSON.stringify({
@@ -42,11 +51,11 @@ export default function PollCreate({Menus,Selections,Poll_id}){
             }
             fetch('http://127.0.0.1:8000/api/selection',options).
             then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
-
+ 
             })
-            e.preventDefault()
             
-            const options ={
+           }
+           const options ={
             method: "PUT",
             body: JSON.stringify({
                 StartDate,
@@ -59,8 +68,8 @@ export default function PollCreate({Menus,Selections,Poll_id}){
             }
             fetch(`http://127.0.0.1:8000/api/poll/${Poll_id}`,options).
             then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
-            }
-            Router.push('/Admin/Polls')
+ 
+            Router.push('/admin/Polls')
         }else{
             alert("Please fill in the Poll before submitting")
             return
@@ -76,11 +85,22 @@ export default function PollCreate({Menus,Selections,Poll_id}){
         setArray(MenusInPoll.map((id)=>id))
         MenusInPoll.length = 0
     }
+    function dates(Poll){
+        if (Poll.StartDate!=null){
+            setStartDate(Poll.StartDate);
+            setEndDate(Poll.EndDate)
+            console.log(StartDate)
+        }
+        else{
+            setStartDate( current.getFullYear() + "-" + current.getMonth() + "-" + current.getDate())
+            setEndDate( current.getFullYear() + "-" + current.getMonth() + "-" + current.getDate() + 2)
+        }
+    }
     useEffect(()=>{
         if (Menus.length>0){
             setLoading(false)
             setMenusDisp(Menus.map(({id}) => id.toString()));
-            setStartDate( current.getFullYear() + "-" + current.getMonth() + "-" + current.getDate() )
+            dates(Poll)
             getPollSelections(setPollmenus,Menus)
             console.log(PollMenus)
             {PollMenus.map(Menuid => {
@@ -138,13 +158,13 @@ export default function PollCreate({Menus,Selections,Poll_id}){
 
     return (
         <Layout>
-        
+            
             <h1>PollCreate</h1>
             <div>
                 <label>Start date</label>
-                <input type="date" defaultValue={StartDate} onChange={(event) => setStartDate(event.target.value)}></input>
+                <input type="date" defaultValue={Poll.StartDate} onChange={(event) => setStartDate(event.target.value)}></input>
                 <label>End date</label>
-                <input type="date" defaultValue={EndDate} onChange={(event) => setEndDate(event.target.value)}></input>
+                <input type="date" defaultValue={Poll.EndDate} onChange={(event) => setEndDate(event.target.value)}></input>
             </div>
             <div className={styles.ListContainer}>
             <ul className={styles.list}>
@@ -175,20 +195,26 @@ export default function PollCreate({Menus,Selections,Poll_id}){
                 })}
             </ul>
             </div>
-            <button className="btn btn-primary btn-lg" onClick={HandleOnSubmit}>Submit</button>
+            <div>
+                <Link className="btn btn-primary btn-lg m-2" href="/admin/Polls">Cancel</Link>
+                <button className="btn btn-primary btn-lg m-2" onClick={HandleOnSubmit}>Submit</button>
+            </div>
+            
 
         </Layout>
         )
     }
 export async function getServerSideProps({params}){
-    const Menus = await handler("http://127.0.0.1:8000/api/menu")
-    const Polls = await handler("http://127.0.0.1:8000/api/poll")
-    const Selections = await handler("http://127.0.0.1:8000/api/selection")
     const Poll_id = params.poll
+    const Menus = await handler("http://127.0.0.1:8000/api/menu")
+    const Poll = await handler(`http://127.0.0.1:8000/api/poll/${Poll_id}`)
+    const Selections = await handler("http://127.0.0.1:8000/api/selection")
+    
     
     return {
         props: { 
             Menus,
+            Poll,
             Selections,
             Poll_id
         }

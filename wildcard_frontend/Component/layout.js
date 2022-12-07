@@ -1,6 +1,5 @@
 
 import NavBar from "./Navbar"
-
 import styles from "../styles/Layout.module.css"
 
 export default function Layout({children}
@@ -9,6 +8,7 @@ export default function Layout({children}
         <div>
         <NavBar/>
         <main>
+        
         {children}
         </main>
         </div>
