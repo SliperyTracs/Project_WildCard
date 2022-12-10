@@ -5,10 +5,15 @@ import {useState,useEffect} from "react";
 
 export default function Ranking({Menus,Polls,Selections,Votes}){
   const MenusId = new Array()
+  
   const [MenusPoll, setMenusPoll] = useState([]);
   const [PreferedMenus , setPreferedMenus] = useState([]);
   const [PollId , setPollId] = useState()
   useEffect(() => {
+    if (Menus.length>0){
+      setLoading(true)
+    }
+    setLoading(false)
     Selections?.map(selection =>{
       if (selection.Poll==1){
         MenusId.push(selection.Menus)

@@ -10,7 +10,6 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
     const [Loading, setLoading] = useState(true)
     const [PollMenus, setPollmenus] = useState([]);
     const [MenusDisp, setMenusDisp] = useState([]);
-    const [PollSelections,setPollSelections] = useState([])
     const [StartDate, setStartDate] = useState(new Date());
     const [EndDate, setEndDate] = useState(new Date());
     const MenusInPoll = new Array()
@@ -89,36 +88,34 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
         if (Poll.StartDate!=null){
             setStartDate(Poll.StartDate);
             setEndDate(Poll.EndDate)
-            console.log(StartDate)
+            
         }
         else{
-            setStartDate( current.getFullYear() + "-" + current.getMonth() + "-" + current.getDate())
-            setEndDate( current.getFullYear() + "-" + current.getMonth() + "-" + current.getDate() + 2)
+            var day = current.getDate(); 
+            if (day<10){
+                day = '0' + day;
+            }
+            setStartDate( current.getFullYear() + "-" + current.getMonth() + "-" + day)
+            setEndDate( current.getFullYear() + "-" + current.getMonth() + "-" + (parseInt(day) + 2))
+            
         }
     }
     useEffect(()=>{
         if (Menus.length>0){
-            setLoading(false)
-            setMenusDisp(Menus.map(({id}) => id.toString()));
-            dates(Poll)
-            getPollSelections(setPollmenus,Menus)
-            console.log(PollMenus)
-            {PollMenus.map(Menuid => {
-                setMenusDisp(current =>
-                    current.filter(id => {
-                        return id.toString() !== Menuid.toString()
-                    }),)
-                console.log(MenusDisp)
-            })}
-        }
-        else{
             setLoading(true)
-            return(
-                <div>
-                    Loading...
-                </div>
-            )
         }
+        setLoading(false)
+        setMenusDisp(Menus.map(({id}) => id.toString()));
+        getPollSelections(setPollmenus,Menus)
+        console.log(PollMenus)
+        {PollMenus.map(Menuid => {
+            setMenusDisp(current =>
+                current.filter(id => {
+                    return id.toString() !== Menuid.toString()
+                }),)
+
+        })}
+        dates(Poll)
     },[Loading])
       
     function HandleOnCheckDisp(e) {
@@ -130,7 +127,6 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
                     return id.toString() !== e.target.value 
                 }),
             )
-            console.log(MenusDisp)
         }
         else {
             setPollmenus(current =>
@@ -138,7 +134,6 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
                     return id !== e.target.value 
                 }),
             )
-            console.log(PollMenus)
         }
       }
     function HandleOnCheckPoll(e) {
@@ -159,12 +154,12 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
     return (
         <Layout>
             
-            <h1>PollCreate</h1>
+            <h1>Poll {Poll.id}</h1>
             <div>
                 <label>Start date</label>
-                <input type="date" defaultValue={Poll.StartDate} onChange={(event) => setStartDate(event.target.value)}></input>
+                <input type="date" defaultValue={StartDate} onChange={(event) => setStartDate(event.target.value)}></input>
                 <label>End date</label>
-                <input type="date" defaultValue={Poll.EndDate} onChange={(event) => setEndDate(event.target.value)}></input>
+                <input type="date" defaultValue={EndDate} onChange={(event) => setEndDate(event.target.value)}></input>
             </div>
             <div className={styles.ListContainer}>
             <ul className={styles.list}>

@@ -32,6 +32,7 @@ export default function AllPolls( {Polls,Weeks} ){
         <h1>All Polls </h1>
         <button onClick={HandleOnCreate} className="bi bi-plus-circle d-inline-block"></button>
         <button>Export all Polls</button>
+        <Link className={styles.link} href="Results">Results of Polls</Link>
         <ul className={styles.list}>
         {polls?.map((poll) => {
           return (
@@ -39,6 +40,7 @@ export default function AllPolls( {Polls,Weeks} ){
                 <Link href={`Polls/${poll.id}`}><span>
                 <h2>Poll {poll.id}</h2>
                 {poll.DateCreated}</span>
+                <Link className="bi bi-clipboard-data" href={`Results/${poll.id}`}>Results</Link>
                 </Link>
               </li>)
             })}
