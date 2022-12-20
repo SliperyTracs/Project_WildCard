@@ -29,6 +29,10 @@ deactivate () {
 
     unset VIRTUAL_ENV
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    unset VIRTUAL_ENV_PROMPT
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
     unset VIRTUAL_ENV_PROMPT
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de
@@ -42,7 +46,11 @@ deactivate () {
 deactivate nondestructive
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 VIRTUAL_ENV="D:\Sats\Project-WildCard\wildcard_backend\venv"
+=======
+VIRTUAL_ENV="C:\Users\frog\OneDrive - Temasek Polytechnic\Desktop\Sats\Project_wildcard\wildcard_backend\venv"
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
 VIRTUAL_ENV="C:\Users\frog\OneDrive - Temasek Polytechnic\Desktop\Sats\Project_wildcard\wildcard_backend\venv"
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de
@@ -65,6 +73,11 @@ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     PS1="(venv) ${PS1:-}"
     export PS1
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    VIRTUAL_ENV_PROMPT="(venv) "
+    export VIRTUAL_ENV_PROMPT
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
     VIRTUAL_ENV_PROMPT="(venv) "
     export VIRTUAL_ENV_PROMPT

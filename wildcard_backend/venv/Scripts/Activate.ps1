@@ -97,12 +97,18 @@ function global:deactivate ([switch]$NonDestructive) {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
     # Just remove VIRTUAL_ENV_PROMPT altogether.
     if (Test-Path -Path Env:VIRTUAL_ENV_PROMPT) {
         Remove-Item -Path env:VIRTUAL_ENV_PROMPT
     }
 
+<<<<<<< HEAD
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
+=======
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de
     # Just remove the _PYTHON_VENV_PROMPT_PREFIX altogether:
     if (Get-Variable -Name "_PYTHON_VENV_PROMPT_PREFIX" -ErrorAction SilentlyContinue) {
@@ -237,6 +243,10 @@ if (-not $Env:VIRTUAL_ENV_DISABLE_PROMPT) {
         _OLD_VIRTUAL_PROMPT
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    $env:VIRTUAL_ENV_PROMPT = $Prompt
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
     $env:VIRTUAL_ENV_PROMPT = $Prompt
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de
@@ -254,15 +264,21 @@ $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 
 # SIG # Begin signature block
 <<<<<<< HEAD
+<<<<<<< HEAD
 # MIIkCQYJKoZIhvcNAQcCoIIj+jCCI/YCAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
 # KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCD50itNqbOCCDp6
 # 9ZnhKce5X7vV6KL67iKMbGTUZ4nf36CCDi8wggawMIIEmKADAgECAhAIrUCyYNKc
 =======
+=======
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 # MIIpigYJKoZIhvcNAQcCoIIpezCCKXcCAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
 # KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCBnL745ElCYk8vk
 # dBtMuQhLeWJ3ZGfzKW4DHCYzAn+QB6CCDi8wggawMIIEmKADAgECAhAIrUCyYNKc
+<<<<<<< HEAD
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
+=======
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de
 # TJ9ezam9k67ZMA0GCSqGSIb3DQEBDAUAMGIxCzAJBgNVBAYTAlVTMRUwEwYDVQQK
 # EwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xITAfBgNV
@@ -339,6 +355,7 @@ $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 # ZOm5cuclMnUHs2uqrRNtnV8UfidPBL4ZHkTcClQbCoz0UbLhkiDvIS00Dn+BBcxw
 # /TKqVL4Oaz3bkMSsM46LciTeucHY9ExRVt3zy7i149sd+F4QozPqn7FrSVHXmem3
 # r7bjyHTxOgqxRCVa18Vtx7P/8bYSBeS+WHCKcliFCecspusCDSlnRUjZwyPdP0VH
+<<<<<<< HEAD
 <<<<<<< HEAD
 # xaZg2unjHY3rMYIVMDCCFSwCAQEwfTBpMQswCQYDVQQGEwJVUzEXMBUGA1UEChMO
 # RGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQgRzQgQ29k
@@ -455,6 +472,8 @@ $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 # 0YyvPy8vnItbUwPuGTVjwU0VmF0m5pSHm/pPALd1xKiMF+eZq580lbrIoUeyZ5mP
 # 0XyrSEj88tBJMxcKZA==
 =======
+=======
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 # xaZg2unjHY3rMYIasTCCGq0CAQEwfTBpMQswCQYDVQQGEwJVUzEXMBUGA1UEChMO
 # RGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQgRzQgQ29k
 # ZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExAhAHHxQbizANJfMU6yMM
@@ -598,5 +617,8 @@ $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 # F+HsKUntyCV64hr9BNLmkpbw+kUvGtC0/7sZF9Gyp/DKnnbQu8vSR+CaZQqVQxJo
 # UeI7m44utNTSSZCJ9JV7bnniwqztrP/r2PTAxkUywoCzif6R863qJ/uQA0QQjq8t
 # +aR822g6YVyJsLYQKbpEgshG2QwzGHun5HkvawJ8
+<<<<<<< HEAD
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
+=======
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de
 # SIG # End signature block

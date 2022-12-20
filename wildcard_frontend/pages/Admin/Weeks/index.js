@@ -9,7 +9,11 @@ export default function Weeks({Weeks}){
             {Weeks?.map(week =>{
                 return(
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <li key={week.id}>
+=======
+                <li>
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
                 <li>
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de

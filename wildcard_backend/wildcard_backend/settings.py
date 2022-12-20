@@ -26,11 +26,15 @@ SECRET_KEY = 'django-insecure-j=l^mv5rw7a1_h9qrcg!(r0#i1hyavsxw)74(zcq45f)1!bn_=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = [
     "wc-backend.azurewebsites.net",
     "localhost",
     "127.0.0.1"
 ]
+=======
+ALLOWED_HOSTS = []
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 
 
 # Application definition
@@ -91,10 +95,17 @@ WSGI_APPLICATION = 'wildcard_backend.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'mysql.connector.django',
         'NAME': 'wildcard_db',
         'USER': 'root',
         'PASSWORD': '1234',
+=======
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'wildcard_db',
+        'USER': 'root',
+        'PASSWORD': 'T0327587b!',
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }
@@ -128,7 +139,11 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+<<<<<<< HEAD
 USE_TZ = False
+=======
+USE_TZ = True
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 
 
 # Static files (CSS, JavaScript, Images)

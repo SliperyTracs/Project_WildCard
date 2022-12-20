@@ -9,7 +9,11 @@ if defined _OLD_CODEPAGE (
 )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 set VIRTUAL_ENV=D:\Sats\Project-WildCard\wildcard_backend\venv
+=======
+set VIRTUAL_ENV=C:\Users\frog\OneDrive - Temasek Polytechnic\Desktop\Sats\Project_wildcard\wildcard_backend\venv
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
 set VIRTUAL_ENV=C:\Users\frog\OneDrive - Temasek Polytechnic\Desktop\Sats\Project_wildcard\wildcard_backend\venv
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de
@@ -30,6 +34,10 @@ if not defined _OLD_VIRTUAL_PATH set _OLD_VIRTUAL_PATH=%PATH%
 
 set PATH=%VIRTUAL_ENV%\Scripts;%PATH%
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+set VIRTUAL_ENV_PROMPT=(venv) 
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
 set VIRTUAL_ENV_PROMPT=(venv) 
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de

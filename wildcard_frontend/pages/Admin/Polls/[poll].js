@@ -69,7 +69,11 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
             then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
  
 <<<<<<< HEAD
+<<<<<<< HEAD
             Router.push('/Admin/Polls')
+=======
+            Router.push('/admin/Polls')
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
             Router.push('/admin/Polls')
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de
@@ -92,7 +96,12 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
         if (Poll.StartDate!=null){
             setStartDate(Poll.StartDate);
 <<<<<<< HEAD
+<<<<<<< HEAD
             setEndDate(Poll.EndDate)   
+=======
+            setEndDate(Poll.EndDate)
+            
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
             setEndDate(Poll.EndDate)
             
@@ -200,7 +209,11 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
             </div>
             <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <Link className="btn btn-primary btn-lg m-2" href="/Admin/Polls">Cancel</Link>
+=======
+                <Link className="btn btn-primary btn-lg m-2" href="/admin/Polls">Cancel</Link>
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
                 <Link className="btn btn-primary btn-lg m-2" href="/admin/Polls">Cancel</Link>
 >>>>>>> c87786d2070907e606f902197f4f0139f56616de

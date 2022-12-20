@@ -24,6 +24,7 @@ export async function handler(url) {
     return data
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 export async function AllHandler(model){
   const response = await fetch(`http://127.0.0.1:8000/api/${model}`);
   const data = await response.json();
@@ -57,6 +58,10 @@ export async function PutHandler(model,id,body){
     }
     fetch(`http://127.0.0.1:8000/api/${model}/${id}`,options).
     then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
+=======
+export async function Posthandler(url){
+  
+>>>>>>> c87786d2070907e606f902197f4f0139f56616de
 =======
 export async function Posthandler(url){
   
