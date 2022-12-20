@@ -1,0 +1,44 @@
+.container{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+.ListContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:10px auto;
+}
+
+.list{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    padding:0;
+    margin:10px;
+    height:50vh;
+    width: 40vw;
+    border: 10px solid #000;
+    border-radius: 20px;
+    overflow: auto;
+}
+.card{
+    text-align: center;
+    list-style-type: none;
+    width:30vw;
+    padding:0.5rem;
+    margin:0.5rem;
+    border:6px solid #999;
+    border-radius:50px;
+    cursor: grab;
+
+}
+.ReturnBtn{
+
+    float:left;
+    background:orangered;
+    color:white;
+    padding:10px;
+    margin:10px;
+
+}

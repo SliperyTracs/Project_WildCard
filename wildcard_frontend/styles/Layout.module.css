@@ -1,0 +1,11 @@
+.navbar {
+    background-image:linear-gradient(to right, red,orange );
+    height:100px;
+    display:flex;
+    align-items: center;
+}
+.container{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
