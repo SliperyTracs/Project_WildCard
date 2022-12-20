@@ -31,7 +31,6 @@ export default function Ranking({Menus,Polls,Selections,Votes}){
       if (Enddate.getDate()<current.getDate()){return}
       setPollId(poll.id)
     })
-  
   }
   useEffect(() => {
     if (Menus.length>0){

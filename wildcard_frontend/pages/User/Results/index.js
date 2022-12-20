@@ -8,6 +8,25 @@ export default function Results({Poll,Selections,Menus,Votes}){
     const MenusId = new Array()
     const [Loading, setLoading] = useState(true)
     const [MenusPoll,setMenusPoll] = useState([])
+    function checkDates(date){
+        var day = current.getDate(); 
+        if (day<10){
+            day = '0' + day;
+        }
+        
+    
+        Polls?.map(poll=>{
+          var Startdate = new Date(poll.StartDate)
+          var Enddate = new Date(poll.EndDate)
+          if (Startdate.getFullYear()>current.getFullYear()){return}
+          if (Startdate.getMonth()>current.getMonth()){return}
+          if (Startdate.getDate()>current.getDate()){return}
+          if (Enddate.getFullYear()<current.getFullYear()){return}
+          if (Enddate.getMonth()<current.getMonth()){return}
+          if (Enddate.getDate()<current.getDate()){return}
+          setPollId(poll.id)
+        })
+      }
     useEffect(()=>{
         if (Menus.length>0){
             setLoading(true)

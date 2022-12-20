@@ -2,11 +2,12 @@
   "name": "project-wildcard-frontend",
   "version": "0.1.0",
   "private": true,
+  
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
-    "postinstall": "next build"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
