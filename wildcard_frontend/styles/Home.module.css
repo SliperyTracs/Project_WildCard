@@ -8,7 +8,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 
@@ -49,6 +49,34 @@
 .description {
   text-align: center;
 }
+.btncontainer{
+  margin:10px;
+  padding:30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition:border-color 0.30s ease-in-out;
+
+
+}
+.btncontainer:hover{
+  box-shadow: inset 0px 0px 0px 5px #222;
+  border-radius: 20px;
+  background:#fafafa;
+}
+.btncontainer > a{
+  display:block;
+  margin:5px;
+  width: 30vw;
+  background:#C69749;
+  border:3px #735F32 solid;
+  font-size: 1.5rem;
+  color:black;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+}
 
 .description {
   margin: 4rem 0;
@@ -69,7 +97,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   max-width: 800px;
 }
 

@@ -32,6 +32,7 @@ export default function Results({Poll,Selections,Menus,Votes}){
             setLoading(true)
         }
         setLoading(false)
+        checkDates()
         Selections?.map(selection =>{
             if (selection.Poll==Poll.id){
                 MenusId.push(selection.Menus)

@@ -16,15 +16,17 @@ export default function Home( {Menus} ) {
         </h1>
 
         <div className={styles.grid}>
-            {Menus.map((menu) => {
+            {Menus.slice(0,3).map((menu) => {
                 return ( 
                 <a className={styles.card} key={menu.id}>
                   <h2>{menu.Name} &rarr;</h2>
                   <p>{menu.Description}</p>
                 </a> )
             })}
-
-
+        </div>
+        <div className={styles.btncontainer}>
+            <a href="/User/Ranking">Start Ranking</a>
+            <a href="/User/Results">Results</a>
         </div>
       </main>
 
