@@ -25,7 +25,7 @@ export default function Results({Poll,Selections,Menus,Votes}){
     return(
         <Layout>
             <h1>Poll {Poll.id}</h1>
-            <Link className={styles.link} href="/admin/Polls">Return</Link>
+            <Link className={styles.link} href="/Admin/Polls">Return</Link>
             <div>
             <ul className={styles.list}>
             {MenusPoll.map(id => {

@@ -6,26 +6,26 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 
-export default function PollCreate({Menus,Poll,Selections,Poll_id}){
+export default function PollCreate({Menus,Poll,Selections,Poll_id,Votes}){
     const [Loading, setLoading] = useState(true)
     const [PollMenus, setPollmenus] = useState([]);
     const [MenusDisp, setMenusDisp] = useState([]);
     const [StartDate, setStartDate] = useState(new Date());
     const [EndDate, setEndDate] = useState(new Date());
-    const MenusInPoll = new Array()
-    var current = new Date()
     
+    var current = new Date() 
+    // Delete current selections and votes next post the current selections and post
     const HandleOnSubmit = (e) =>{
-        
-        console.log(Selections)
+        const SelectionInPoll = new Array()
+        const VotesInPoll = new Array()
         {Selections?.map(selection=>{
             
             if (selection.Poll.toString() == Poll_id){
-                MenusInPoll.push(selection.id)
+                SelectionInPoll.push(selection.id)
             }
         })}
-        console.log(MenusInPoll)
-        {MenusInPoll?.map(id => {
+         
+        {SelectionInPoll?.map(id => {
             const options ={
                 method: 'DELETE'
                 }
@@ -33,7 +33,21 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
                 then(response=>console.log(`response`,response)).catch(console.error())
     
         })}
-        MenusInPoll.length = 0
+        {Votes?.map(Vote=>{
+            
+            if (Vote.Poll.toString() == Poll_id){
+                VotesInPoll.push(Vote.id)
+            }
+        })}
+        console.log(VotesInPoll)
+        {VotesInPoll?.map(id => {
+            const options ={
+                method: 'DELETE'
+                }
+                fetch(`http://127.0.0.1:8000/api/votes/${id}`,options).
+                then(response=>console.log(`response`,response)).catch(console.error())
+    
+        })}
         e.preventDefault()
         if (PollMenus.length != 0){
             {PollMenus?.map(menu_id => {
@@ -41,6 +55,7 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
             const options ={
             method: "POST",
             body: JSON.stringify({
+                
                 Menus : menu_id,
                 Poll : Poll_id
             }),
@@ -52,6 +67,22 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
             then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
  
             })
+            {PollMenus?.map(menu_id => {
+                const options ={
+                method: "POST",
+                body: JSON.stringify({
+                    Votes : 0,
+                    Menus : menu_id,
+                    Poll : Poll_id
+                }),
+                headers:{
+                    'Content-Type':'application/json'
+                }
+                }
+                fetch('http://127.0.0.1:8000/api/votes',options).
+                then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
+     
+                })}
             
            }
            const options ={
@@ -67,21 +98,15 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
             }
             fetch(`http://127.0.0.1:8000/api/poll/${Poll_id}`,options).
             then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
- 
-<<<<<<< HEAD
-<<<<<<< HEAD
             Router.push('/Admin/Polls')
-=======
-            Router.push('/admin/Polls')
->>>>>>> c87786d2070907e606f902197f4f0139f56616de
-=======
-            Router.push('/admin/Polls')
->>>>>>> c87786d2070907e606f902197f4f0139f56616de
-        }else{
+        
+    }
+        else{
             alert("Please fill in the Poll before submitting")
             return
         }
     }
+    //Get ids of all the poll selections
     function getPollSelections(setArray){
         const MenusInPoll = new Array()
         {Selections?.map(selection=>{
@@ -92,20 +117,11 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
         setArray(MenusInPoll.map((id)=>id))
         MenusInPoll.length = 0
     }
+    //get the Current dates of the poll if no date use the current date and time
     function dates(Poll){
         if (Poll.StartDate!=null){
             setStartDate(Poll.StartDate);
-<<<<<<< HEAD
-<<<<<<< HEAD
-            setEndDate(Poll.EndDate)   
-=======
             setEndDate(Poll.EndDate)
-            
->>>>>>> c87786d2070907e606f902197f4f0139f56616de
-=======
-            setEndDate(Poll.EndDate)
-            
->>>>>>> c87786d2070907e606f902197f4f0139f56616de
         }
         else{
             var day = current.getDate(); 
@@ -208,15 +224,8 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id}){
             </ul>
             </div>
             <div>
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <Link className="btn btn-primary btn-lg m-2" href="/Admin/Polls">Cancel</Link>
-=======
-                <Link className="btn btn-primary btn-lg m-2" href="/admin/Polls">Cancel</Link>
->>>>>>> c87786d2070907e606f902197f4f0139f56616de
-=======
-                <Link className="btn btn-primary btn-lg m-2" href="/admin/Polls">Cancel</Link>
->>>>>>> c87786d2070907e606f902197f4f0139f56616de
+
                 <button className="btn btn-primary btn-lg m-2" onClick={HandleOnSubmit}>Submit</button>
             </div>
             
@@ -229,14 +238,15 @@ export async function getServerSideProps({params}){
     const Menus = await handler("http://127.0.0.1:8000/api/menu")
     const Poll = await handler(`http://127.0.0.1:8000/api/poll/${Poll_id}`)
     const Selections = await handler("http://127.0.0.1:8000/api/selection")
-    
+    const Votes = await handler("http://127.0.0.1:8000/api/votes")
     
     return {
         props: { 
             Menus,
             Poll,
             Selections,
-            Poll_id
+            Poll_id,
+            Votes
         }
     }
 }

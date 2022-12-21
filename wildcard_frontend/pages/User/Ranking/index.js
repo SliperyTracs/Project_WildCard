@@ -9,10 +9,9 @@ export default function Ranking({Menus,Polls,Selections,Votes}){
   var current = new Date()
   const router = new useRouter()
   const [Loading, setLoading] = useState(true)
-  const [PollDate, setPollDate] = useState(new Date());
   const [MenusPoll, setMenusPoll] = useState([]);
   const [PreferedMenus , setPreferedMenus] = useState([]);
-  const [PollId , setPollId] = useState()
+  const [PollId , setPollId] = useState(0)
   function checkDates(date){
     var day = current.getDate(); 
     if (day<10){
@@ -60,7 +59,6 @@ export default function Ranking({Menus,Polls,Selections,Votes}){
       console.log(PreferedMenus)
   }
   function HandleOnSubmit(e){
-    console.log("im alive")
     {PreferedMenus?.map(MenuId => {
       const vote = Votes.find(obj => obj.Menus.toString() === MenuId);
       vote.Votes = vote.Votes + 1
@@ -79,7 +77,7 @@ export default function Ranking({Menus,Polls,Selections,Votes}){
       }
       fetch(`http://127.0.0.1:8000/api/votes/${vote.id}`,options).
       then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
-      router.push()
+      router.push("Results")
    })}
   }
   return (

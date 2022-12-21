@@ -4,10 +4,13 @@ import styles from "../../../styles/User/Results.module.css"
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Results({Poll,Selections,Menus,Votes}){
-    const MenusId = new Array()
+export default function Results({Polls,Selections,Menus,Votes}){
+    const VotesIds = new Array()
+    const current = new Date()
+    const [TotalVotes, setTotalVotes] = useState(0)  
     const [Loading, setLoading] = useState(true)
-    const [MenusPoll,setMenusPoll] = useState([])
+    const [VotesPoll,setVotesPoll] = useState([])
+    const [PollId , setPollId] = useState(0)
     function checkDates(date){
         var day = current.getDate(); 
         if (day<10){
@@ -33,55 +36,61 @@ export default function Results({Poll,Selections,Menus,Votes}){
         }
         setLoading(false)
         checkDates()
-        Selections?.map(selection =>{
-            if (selection.Poll==Poll.id){
-                MenusId.push(selection.Menus)
-                console.log(selection.Menus)
+        var votes = 0
+        Votes?.map(vote =>{
+            const voteId = vote.id
+            if (vote.Poll==1){
+                VotesIds.push(vote.id)
+                console.log(vote)
+                votes += vote.Votes
+                
             }
         })
-        setMenusPoll(MenusId.map((id) => id))
-        console.log(MenusPoll)
-    },[]);
+        setVotesPoll(VotesIds)
+        setTotalVotes(votes)
+    },[Loading]);
     return(
         <Layout>
-            <h1>Poll {Poll.id}</h1>
-            <Link className={styles.link} href="/admin/Polls">Return</Link>
+            <h1>Results</h1>
+            <a className={styles.btnReturn} href="/">Return</a>
             <div>
             <ul className={styles.list}>
-            {MenusPoll.map(id => {
-                const menu = Menus.find(obj => obj.id === id);
-                const vote = Votes.find(obj => obj.Menus === id)
-                    return (
-                        <li className={styles.card} key={menu.id}>
-                        <span>
-                            <h2>{menu.Name}</h2>
-                            <h3>Votes : {vote.Votes}</h3>
-                            {menu.Description}
+                <table>
+                {VotesPoll.map(voteId =>{
+                    const vote = Votes.find(obj => obj.id ===voteId)
+                    const menu = Menus.find(obj => obj.id === vote.Menus);
+                    console.log(typeof(TotalVotes))
+
+                    var number = (vote.Votes / TotalVotes) * 100
+                    var VotePercent = Math.round(number * 10) / 10
+                    console.log(vote.Votes)
+                    console.log(vote)
+                    return(
+                    <tr>
+                        <td>
+                            <a><h3>{menu.Name}</h3></a>
+                        </td>
+                        <td>
+                            <a><span>{VotePercent} %</span></a>
                             
-                        </span>
-                    </li>)    
-                })}
+                        </td>
+                    </tr>
+                    )
+                })} 
+                </table>
             </ul>
             </div>
         </Layout>
     )
 }
-export async function getStaticPaths({ slug: string }){
-
-    return {
-        paths: [], //indicates that no page needs be created at build time
-        fallback: 'blocking' //indicates the type of fallback
-    }
-}
-export async function getStaticProps({params}){
-    const Poll_id = params.poll
-    const Poll = await handler(`http://127.0.0.1:8000/api/poll/${Poll_id}`);
+export async function getStaticProps(){
+    const Polls = await handler(`http://127.0.0.1:8000/api/poll`);
     const Selections = await handler("http://127.0.0.1:8000/api/selection");
     const Menus = await handler("http://127.0.0.1:8000/api/menu")
     const Votes = await handler("http://127.0.0.1:8000/api/votes")
     return {
         props: { 
-          Poll,
+          Polls,
           Selections,
           Menus,
           Votes

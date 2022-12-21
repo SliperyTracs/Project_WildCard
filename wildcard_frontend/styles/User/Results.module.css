@@ -1,0 +1,12 @@
+.btnReturn{
+    display:block;
+    margin:5px;
+    width: 30vw;
+    background:#C69749;
+    border:3px #735F32 solid;
+    font-size: 1.5rem;
+    color:black;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+  }
