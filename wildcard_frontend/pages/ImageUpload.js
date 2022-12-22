@@ -42,7 +42,8 @@ export default function Home() {
         method: 'POST',
         body: formData
     }).then(r => r.json());
-    setImageSrc(data.secure_url);
+    const image = data.secure_url
+    console.log(image)
     setUploadData(data);
   }
 
@@ -77,7 +78,7 @@ export default function Home() {
           )}
 
           {uploadData && (
-            <code><pre>{JSON.stringify(uploadData, null, 2)}</pre></code>
+            <code>{imagesrc}</code>
           )}
         </form>
       </main>
