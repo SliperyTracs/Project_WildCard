@@ -2,7 +2,6 @@
   "name": "project-wildcard-frontend",
   "version": "0.1.0",
   "private": true,
-  
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -15,12 +14,14 @@
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
     "bootstrap": "^5.2.2",
+    "cloudinary-react": "^1.8.1",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.2",
     "next": "^13.0.6",
     "react": "18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "18.2.0",
+    "sass": "^1.57.1",
     "typescript": "4.8.4"
   },
   "devDependencies": {

@@ -35,7 +35,7 @@ export default function MenuCreate({}){
         <Layout>
         <h1>CreateMenu</h1>
             
-        <form className={styles.form} action="/Admin/MenuAll" onSubmit={handleOnSubmit} onReset={handleOnReset} method="POST">
+        <form className={styles.form} action="/Admin/Menus" onSubmit={handleOnSubmit} onReset={handleOnReset} method="POST">
             <label for="first">Menu Name:</label>
             <input type="text" 
             id="first" 
