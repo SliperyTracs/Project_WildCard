@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 
 
 export default function PollCreate({Menus,Poll,Selections,Poll_id,Votes}){
-    const [Loading, setLoading] = useState(true)
+    const [Loading, setLoading] = useState(false)
     const [PollMenus, setPollmenus] = useState([]);
     const [MenusDisp, setMenusDisp] = useState([]);
     const [StartDate, setStartDate] = useState(new Date());

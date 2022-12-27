@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Admin(){
     return(
         <Layout>
-            Main Menus
+            <h1>Main Menus</h1>
             <Link href="Admin/Menus">
                 Menus
             </Link>

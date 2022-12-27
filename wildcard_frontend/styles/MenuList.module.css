@@ -2,17 +2,17 @@
 .list{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
 
-    gap: 50px 50px;
+
+    gap:5vh 50px;
     max-width: 90vw;
-    height: 70vh;
-    padding:0;
+    margin:30px;
+    padding:10px;
     
 
-    /* border: 10px solid #000;
-    border-radius: 20px; */
+    border: 10px solid #777;
+    border-radius: 20px;
     /* overflow: auto; */
 }
 /* .card{
@@ -28,8 +28,6 @@
 
 } */
 .card {
-    
-
     text-align: center;
     color: inherit;
     text-decoration: none;

@@ -53,7 +53,7 @@ async function handleOnSubmit(e) {
         }
         fetch('http://127.0.0.1:8000/api/menu',menus).
         then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
-        // router.push('/Admin/Menus')
+        router.push('/Admin/Menus')
     }
     const handleOnReset = (e) =>{
         router.push('/Admin/Menus');
@@ -91,7 +91,7 @@ async function handleOnSubmit(e) {
             id="last"  
             name="file"
             onChange={handleOnChange} 
-            required/>
+            />
             <div className={styles.BtnContainer}>
 
             <button type="reset" >Cancel</button>

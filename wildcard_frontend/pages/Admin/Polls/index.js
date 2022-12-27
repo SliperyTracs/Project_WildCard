@@ -30,7 +30,7 @@ export default function AllPolls( {Polls,Weeks} ){
     return (
         <Layout>
         <h1>All Polls </h1>
-        <a className="btn btn-primary btn-lg m-2">Return to main </a>
+        <Link href="/Admin" className="btn btn-primary btn-lg m-2">Return to main </Link>
         <button onClick={HandleOnCreate} className="bi bi-plus-circle d-inline-block"></button>
         <button>Export all Polls</button>
         <ul className={styles.list}>
