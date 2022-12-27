@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function Results({Polls,Selections,Menus,Votes}){
     const VotesIds = new Array()
-    const current = new Date()
+    var current = new Date()
     const [TotalVotes, setTotalVotes] = useState(0)  
     const [Loading, setLoading] = useState(true)
     const [VotesPoll,setVotesPoll] = useState([])

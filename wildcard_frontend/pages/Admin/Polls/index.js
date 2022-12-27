@@ -23,8 +23,9 @@ export default function AllPolls( {Polls,Weeks} ){
           }
       }
       const update = fetch('http://127.0.0.1:8000/api/poll',options).
-      then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error()).finally(router.reload)    
-
+      then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error()) 
+      console.log(polls.length-1)  
+      router.push(`Polls/${polls.length-1}`)
       
     }
     return (
