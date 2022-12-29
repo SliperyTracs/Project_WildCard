@@ -1,12 +1,14 @@
-import {useRouter} from "next/router"
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 export default function Navbar(){
     const router = useRouter();
+    const { data: session, status } = useSession()
+    console.log(session)
     return(
         <nav
         className="navbar navbar-dark bg-dark navbar-expand-lg"
         aria-label="First navbar example"
-        
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
@@ -27,14 +29,14 @@ export default function Navbar(){
           <div className="collapse navbar-collapse justify-content-end" id="navbarsExample01">
             <ul className="navbar-nav ">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  Home
+                <a className="nav-link" aria-current="page" href="/">
+                  {status == "authenticated" ? session.user.name : <>Home</>}
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/login">
-                  Login
-                </a>
+                
+                {status == "authenticated" ? <a className="nav-link" href="/login">Sign Out</a> : <a className="nav-link" href="/login">Sign In</a>}
+                
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/User/Ranking">
