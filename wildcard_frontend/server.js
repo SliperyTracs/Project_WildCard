@@ -1,7 +1,7 @@
 const { createServer } = require("http");
 // const express = require('express') (Only if you app uses express)
 const next = require("next");
-
+require('dotenv').config()
 const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });

@@ -48,7 +48,7 @@ export default function Results({Polls,Selections,Menus,Votes}){
                             <a><h3>{menu.Name}</h3></a>
                         </td>
                         <td>
-                            <a> <span>  {vote.Votes} vote</span></a>
+                            <a> <span>{vote.Votes} vote</span></a>
                             </td>
                     </tr>
                     )

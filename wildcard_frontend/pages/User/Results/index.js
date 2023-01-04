@@ -11,12 +11,13 @@ export default function Results({Polls,Selections,Menus,Votes}){
     const [Loading, setLoading] = useState(true)
     const [VotesPoll,setVotesPoll] = useState([])
     const [PollId , setPollId] = useState(0)
-    const [MenusPoll,setMenusPoll] = useState([])
     function checkDates(date){
         var day = current.getDate(); 
         if (day<10){
             day = '0' + day;
         }
+        
+    
         Polls?.map(poll=>{
           var Startdate = new Date(poll.StartDate)
           var Enddate = new Date(poll.EndDate)
@@ -42,19 +43,19 @@ export default function Results({Polls,Selections,Menus,Votes}){
                 VotesIds.push(vote.id)
                 console.log(vote)
                 votes += vote.Votes
+                
             }
         })
         setVotesPoll(VotesIds)
         setTotalVotes(votes)
     },[Loading]);
-
     return(
         <Layout>
-               <h1>Results</h1>
+            <h1>Results</h1>
             <a className={styles.btnReturn} href="/">Return</a>
             <div>
             <ul className={styles.list}>
-            <table>
+                <table>
                 {VotesPoll.map(voteId =>{
                     const vote = Votes.find(obj => obj.id ===voteId)
                     const menu = Menus.find(obj => obj.id === vote.Menus);
@@ -71,7 +72,8 @@ export default function Results({Polls,Selections,Menus,Votes}){
                         </td>
                         <td>
                             <a><span>{VotePercent} %</span></a>
-                            </td>
+                            
+                        </td>
                     </tr>
                     )
                 })} 
@@ -81,7 +83,6 @@ export default function Results({Polls,Selections,Menus,Votes}){
         </Layout>
     )
 }
-
 export async function getStaticProps(){
     const Polls = await handler(`http://127.0.0.1:8000/api/poll`);
     const Selections = await handler("http://127.0.0.1:8000/api/selection");
