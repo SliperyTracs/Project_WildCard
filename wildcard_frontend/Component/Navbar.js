@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 export default function Navbar(){
     const router = useRouter();
     const { data: session, status } = useSession()
-    console.log(session)
     return(
         <nav
         className="navbar navbar-dark bg-dark navbar-expand-lg"

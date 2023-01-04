@@ -13,16 +13,14 @@ const options = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
           }),
     ],
-    callbacks: async ({ session, token, user}) => {
-        // Check if the user is an admin and set the isAdmin property
-        session.user.isAdmin = user.isAdmin;
-        if (user.email === 'sheepj117@gmail.com') {
-          user.isAdmin = true
-        }
-        console.log(session)
-        return session
-      },
-    
+    onVerify: async (user, account, profile) => {
+      console.log(user)
+      if (user.email === 'sheepj117@gmail.com') {
+        user.isAdmin = true
+      }
+  
+      return user
+    },
 }
 
 export default (req, res) => NextAuth(req, res, options)
