@@ -12,6 +12,8 @@ export default function Menu({menu}){
     const [imageSrc, setImageSrc] = useState( menu.Image != null ? menu.Image :  NotFound );
     const [uploadData, setUploadData] = useState();
     const [Description , setDescription] = useState(menu.Description);
+    const [Halal, setHalal] = useState(menu.Halal);
+    const [Cusine, setCusine] = useState(menu.Cusine);
    
     // useEffect(()=>{
     //     if (menu.length>0){
@@ -54,7 +56,8 @@ export default function Menu({menu}){
             method: "PUT",
             body: JSON.stringify({
                 Name : Name,
-                Description : Description,
+                Cusine : Cusine,
+                Halal : Halal,
                 Image : image
             }),
             headers:{
@@ -68,17 +71,34 @@ export default function Menu({menu}){
     const handleOnReset = (e) =>{
         router.push('/Admin/Menus');
     }
+    const handleOnCheck = (event) =>{
+        if (event.target.checked){
+            setHalal(true)
+            return
+        }
+        setHalal(false)
+
+    }
     return(
         <Layout>
         <h1>CreateMenu</h1>
         <a href="/" rel="noreferrer nofollower" className={styles.card}>
             <span>
-            <Image src={imageSrc} />
+            <Image width="100" height="75" src={imageSrc != null ? imageSrc :  NotFound } alt="image"/>
             <h4>{Name}</h4>
-            {Description}
+            {Cusine}
+            {Halal ? <>Halal</> : <>Non Halal</>} 
             </span>
         </a>
         <form className={styles.form} action="/Admin/Menus" onSubmit={handleOnSubmit} onReset={handleOnReset} method="POST">
+            <label for="last">Menu Image:</label>
+            <input type="file" 
+            id="last"  
+            name="file"
+            
+            onChange={handleOnChange} 
+            required/>
+
             <label for="first">Menu Name:</label>
             <input type="text" 
             id="first" 
@@ -88,22 +108,24 @@ export default function Menu({menu}){
             defaultValue={menu.Name}
             name="Name" 
             required/>
-            <label for="last">Menu Description:</label>
-            <input type="text"
-            onChange={(event)=>{
-                setDescription(event.target.value)
+           <label for="last">Menu Cusine:</label>
+            <select name="cusine" onChange={(event)=>{
+                setCusine(event.target.value)
             }}
-            defaultValue={menu.Description}
+            defaultValue={menu.Cusine}>
+                <option value="Western">Western</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Indian">Indian</option>
+                <option value="Malay">Malay</option>
+            </select>
+            <label for="first">Halal:</label>
+            <input type="Checkbox"
+            onChange={handleOnCheck}
+            defaultValue={Halal}
             id="last" 
-            name="Description" />
+            name="Halal" />
             
-            <label for="last">Menu Image:</label>
-            <input type="file" 
-            id="last"  
-            name="file"
-            
-            onChange={handleOnChange} 
-            required/>
+           
             <div className={styles.BtnContainer}>
 
             <button type="reset" >Cancel</button>

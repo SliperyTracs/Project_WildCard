@@ -2,7 +2,8 @@ from django.db import models
 
 class Menus(models.Model):  
     Name = models.CharField(max_length=200)  
-    Description = models.CharField(max_length=255) 
+    Cusine = models.CharField(max_length=255) 
+    Halal = models.BooleanField(default=False)
     DateCreated=models.DateField(auto_now=True, null=True)
     Image = models.CharField(max_length=255, null=True)
     class Meta:  

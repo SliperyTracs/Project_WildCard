@@ -124,12 +124,17 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id,Votes}){
             setEndDate(Poll.EndDate)
         }
         else{
+            console.log(current.getMonth())
             var day = current.getDate(); 
-            if (day<10){
-                day = '0' + day;
+            var month = current.getMonth()+1;
+            
+            setStartDate( current.getFullYear() + "-" + (month<10 ? '0'+month : month) + "-" + (day < 10 ? '0' + day :day))
+            day = day+2
+            if (day > 31){
+                month = month + 1
+                day = day - 29
             }
-            setStartDate( current.getFullYear() + "-" + current.getMonth() + "-" + day)
-            setEndDate( current.getFullYear() + "-" + current.getMonth() + "-" + (parseInt(day) + 2))
+            setEndDate( current.getFullYear() + "-" + (month<10 ? '0'+month : month) + "-" + (day < 10 ? '0' + day : day))
             
         }
     }

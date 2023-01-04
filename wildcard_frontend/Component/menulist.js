@@ -15,9 +15,8 @@ export default function MenuList({Menus}){
                     return (
                     <a href={`/Admin/Menus/${menu.id}`} rel="noreferrer nofollower"className={styles.card} key={menu.id}>
                         <span>
-                        <Image width="100" height="75" src={NotFound} alt="nasi-lemak"/>
+                        <Image width="100" height="75" src={image} alt="Image"/>
                         <h4>{menu.Name}</h4>
-                        {menu.Description}
                         </span>
                     </a>
                     )

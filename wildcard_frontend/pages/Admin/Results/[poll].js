@@ -40,9 +40,6 @@ export default function Results({Polls,Selections,Menus,Votes}){
                     const vote = Votes.find(obj => obj.id ===voteId)
                     const menu = Menus.find(obj => obj.id === vote.Menus);
                     console.log(typeof(TotalVotes))
-
-                    var number = (vote.Votes / TotalVotes) * 100
-                    var VotePercent = Math.round(number * 10) / 10
                     console.log(vote.Votes)
                     console.log(vote)
                     return(
@@ -51,7 +48,7 @@ export default function Results({Polls,Selections,Menus,Votes}){
                             <a><h3>{menu.Name}</h3></a>
                         </td>
                         <td>
-                            <a><span>{VotePercent} %</span></a>
+                            <a> <span>  {vote.Votes} vote</span></a>
                             </td>
                     </tr>
                     )

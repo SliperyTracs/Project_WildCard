@@ -4,7 +4,8 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: [
-      "eatbook.sg" 
+      "eatbook.sg" ,
+      "res.cloudinary.com"
     ]
   }
 }
