@@ -38,7 +38,7 @@ export default function AllPolls( {Polls,Weeks} ){
         <h1>All Polls </h1>
         <Link href="/Admin" className="btn btn-primary btn-lg m-2">Return to main </Link>
         <button onClick={HandleOnCreate} className="bi bi-plus-circle d-inline-block"></button>
-        <button onClick={router.push("/Admin/Polls/export")}>Export all Polls</button>
+        <Link href="Polls/export" className="btn btn-primary btn-lg m-2">Export polls</Link>
         <ul className={styles.list}>
         {polls?.map((poll) => {
           return (
