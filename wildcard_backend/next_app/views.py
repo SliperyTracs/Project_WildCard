@@ -14,14 +14,16 @@ models = {
     "poll" : Poll,
     "week" : Week,
     "selection" : Selection,
-    "votes" : Votes
+    "votes" : Votes,
+    "admin" : Admin
 }
 serializers = {
     "menu" : MenuSerializer,
     "poll" : PollSerializer,
     "week" : WeekSerializer,
     "selection" : SelectionSerializer,
-    "votes" : VotesSerializer
+    "votes" : VotesSerializer,
+    "admin" : AdminSerializer
 }
 @csrf_exempt
 @api_view(['GET', 'POST', 'DELETE'])

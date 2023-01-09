@@ -4,7 +4,8 @@ from rest_framework import serializers
  
 # import model from models.py
 from .models import *
- 
+# import PasswordHasher()
+from argon2 import PasswordHasher
 #Menu serializer
 class MenuSerializer(serializers.ModelSerializer):
     # specify model and fields
@@ -35,3 +36,19 @@ class SelectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Selection
         fields = "__all__"
+#Admin serializer
+
+class AdminSerializer(serializers.ModelSerializer):
+    Password = serializers.CharField()
+
+    def create(self, validated_data):
+        # Hash the password before saving the user
+        ph = PasswordHasher()
+        hashed_password = ph.hash(validated_data['Password'])
+        validated_data['Password'] = hashed_password
+        return super().create(validated_data)
+    class Meta:
+        model = Admin
+        fields = '__all__'
+
+   

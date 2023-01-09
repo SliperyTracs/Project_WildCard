@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_nextjs',
     'next_app',
-    'api'
+    'api',
+    'argon2'
 
 ]
 REST_FRAMEWORK = {
@@ -64,7 +65,13 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.ScryptPasswordHasher',
+]
 ROOT_URLCONF = 'wildcard_backend.urls'
 
 TEMPLATES = [
@@ -94,8 +101,8 @@ DATABASES = {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'wildcard_db',
         'USER': 'root',
-        'PASSWORD': 'T0327587b!',
-        # 'PASSWORD': '1234',
+        # 'PASSWORD': 'T0327587b!',
+        'PASSWORD': '1234',
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }

@@ -31,3 +31,9 @@ class Selection(models.Model):
     Poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     class Meta:  
         db_table = "selection" 
+class Admin(models.Model):
+    Username = models.CharField(max_length=255, null=True)
+    Email = models.EmailField()
+    Password = models.CharField(max_length=255)
+    class Meta:
+        db_table = "Admin"

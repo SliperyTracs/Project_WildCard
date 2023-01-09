@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 export default function AllPolls( {Polls,Weeks} ){
   const [polls , setpolls] = useState([])
   const router = useRouter();
+  const [Export, setExport] = useState([])
   useEffect(()=> {
     setpolls(Polls.map((poll) => poll))
   },[])
@@ -28,16 +29,21 @@ export default function AllPolls( {Polls,Weeks} ){
       router.push(`Polls/${polls.length-1}`)
       
     }
+  function HandleOnCheck(e){
+    const state = e.target.checked
+    console.log(state)
+  }
     return (
         <Layout>
         <h1>All Polls </h1>
         <Link href="/Admin" className="btn btn-primary btn-lg m-2">Return to main </Link>
         <button onClick={HandleOnCreate} className="bi bi-plus-circle d-inline-block"></button>
-        <button>Export all Polls</button>
+        <button onClick={router.push("/Admin/Polls/export")}>Export all Polls</button>
         <ul className={styles.list}>
         {polls?.map((poll) => {
           return (
               <li className={styles.card} key={poll.id}>
+                <input type="checkbox" onChange={HandleOnCheck} value={poll.id}/>
                 <Link href={`Polls/${poll.id}`}><span>
                 <h2>Poll {poll.id}</h2>
                 {poll.DateCreated}</span>
