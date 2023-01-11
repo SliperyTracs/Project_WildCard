@@ -3,7 +3,7 @@ import MenuList from "../../../Component/menulist";
 import styles from "../../../styles/Admin/Menus.module.css"
 import Link from "next/link"
 import Image from "next/image"
-import {handler} from "../../api"
+import {AllHandler, handler} from "../../api"
 import Add from "../../../public/add50.jpg"
 export default function AllMenu( props ){
   
@@ -20,7 +20,7 @@ export default function AllMenu( props ){
 }
 export async function getServerSideProps(){
 
-    const Menus = await handler("http://127.0.0.1:8000/api/menu");
+    const Menus = await AllHandler("menu");
     return {
       props: { 
         Menus,

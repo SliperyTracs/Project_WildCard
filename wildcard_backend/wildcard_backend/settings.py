@@ -96,15 +96,28 @@ WSGI_APPLICATION = 'wildcard_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+        
+#         'ENGINE': 'mssql',
+#         'NAME': 'wildcard_db',
+#         'USER': 'Wildcardadmin@wildcardmysqlserver',
+#         'PASSWORD': 'Wildcarddb1234',
+#         'HOST':'wildcardmysqlserver.database.windows.net',
+#         'PORT':'1433',
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 17 for SQL Server',
+#          }
+#     }
+# }
 DATABASES = {
-    'default': {
+    'default':{
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'wildcard_db',
-        'USER': 'root',
-        # 'PASSWORD': 'T0327587b!',
-        'PASSWORD': '1234',
-        'HOST':'127.0.0.1',
-        'PORT':'3306',
+        'NAME' : "wildcard_db",
+        "USER" : 'root',
+        "PASSWORD" : '1234',
+        "HOST" :'127.0.0.1',
+        'PORT' : "3306"
     }
 }
 

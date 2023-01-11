@@ -36,7 +36,6 @@ export async function OneHandler(model,id){
 }
 
 export async function Posthandler(model,body){
-  e.preventDefault()
   const options ={
       method: "POST",
       body: JSON.stringify(
@@ -67,7 +66,7 @@ export async function DeleteHandler(model,id){
     const options ={
       method: 'DELETE'
       }
-      if (id != null){
+     if (id != null){
       fetch(`http://127.0.0.1:8000/api/${model}/${id}`,options)
       then(response=>console.log(`response`,response)).catch(console.error())
       return

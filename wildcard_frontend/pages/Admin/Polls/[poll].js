@@ -1,4 +1,4 @@
-import { handler } from "../../api"
+import { DeleteHandler, handler } from "../../api"
 import Router from "next/router"
 import styles from "../../../styles/Admin/PollCreate.module.css" 
 import Layout from "../../../Component/layout"
@@ -31,8 +31,10 @@ export default function PollCreate({Menus,Poll,Selections,Poll_id,Votes}){
                 }
                 fetch(`http://127.0.0.1:8000/api/selection/${id}`,options).
                 then(response=>console.log(`response`,response)).catch(console.error())
+                DeleteHandler("selection", id)
     
         })}
+
         {Votes?.map(Vote=>{
             
             if (Vote.Poll.toString() == Poll_id){

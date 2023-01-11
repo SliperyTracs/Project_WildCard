@@ -1,6 +1,6 @@
 import styles from "../../../styles/Admin/Menu.module.css"
 import Layout from "../../../Component/layout"
-import { handler } from "../../api"
+import { OneHandler, PutHandler } from "../../api"
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -10,30 +10,27 @@ export default function Menu({menu}){
     const router =  new useRouter();
     const [Name , setName] = useState(menu.Name);
     const [imageSrc, setImageSrc] = useState( menu.Image != null ? menu.Image :  NotFound );
-    const [uploadData, setUploadData] = useState();
-    const [Description , setDescription] = useState(menu.Description);
     const [Halal, setHalal] = useState(menu.Halal);
     const [Cusine, setCusine] = useState(menu.Cusine);
    
-    // useEffect(()=>{
-    //     if (menu.length>0){
-    //         setLoading(true)
-    //     }
-    //     setLoading(false)
-    // },[Loading])
+    useEffect(()=>{
+        if (menu.length>0){
+            setLoading(true)
+        }
+        setLoading(false)
+    },[Loading])
     function handleOnChange(changeEvent) {
         const reader = new FileReader();
     
         reader.onload = function(onLoadEvent) {
           setImageSrc(onLoadEvent.target.result);
-          setUploadData(undefined);
         }
     
         if(changeEvent.target.files[0]){
             reader.readAsDataURL(changeEvent.target.files[0]);
         }
-      }
-      async function handleOnSubmit(e) {
+    }
+    async function handleOnSubmit(e) {
         e.preventDefault()
         const form = e.currentTarget;
         const fileInput = Array.from(form.elements).find(({ name }) => name === 'file');
@@ -50,22 +47,15 @@ export default function Menu({menu}){
         }).then(r => r.json());
         const image = data.secure_url
 
-        const Name = e.target.Name.value;
-        const Description = e.target.Description.value
-        const menus ={
-            method: "PUT",
-            body: JSON.stringify({
-                Name : Name,
-                Cusine : Cusine,
-                Halal : Halal,
-                Image : image
-            }),
-            headers:{
-                'Content-Type':'application/json'
-            }
-        }
-        fetch(`http://127.0.0.1:8000/api/menu/${menu.id}`,menus).
-        then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
+        setName(e.target.Name)
+        setCusine(e.target.Cusine)
+        //Puts Handler for Menu
+        PutHandler("menu" ,menu.id , {
+            Name : Name,
+            Cusine : Cusine,
+            Halal : Halal,
+            Image : image
+        })
         router.push('/Admin/Menus')
     }
     const handleOnReset = (e) =>{
@@ -97,7 +87,8 @@ export default function Menu({menu}){
             name="file"
             
             onChange={handleOnChange} 
-            required/>
+            DefaultValue={menu.Image}
+            />
 
             <label for="first">Menu Name:</label>
             <input type="text" 
@@ -137,8 +128,7 @@ export default function Menu({menu}){
 }
 export async function getServerSideProps({params}){
     const Menu_id = params.Menu
-    // console.log(Menu_id)
-    const menu = await handler(`http://127.0.0.1:8000/api/menu/${Menu_id}`);
+    const menu = await OneHandler(`http://127.0.0.1:8000/api/menu/${Menu_id}`);
     return{
         props :{
             menu,

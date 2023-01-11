@@ -4,6 +4,7 @@ import styles from "../../../styles/Admin/MenusCreate.module.css"
 import Layout from "../../../Component/layout"
 import Link from "next/link"
 import { useRouter } from "next/router";
+import { Posthandler } from "../../api"
 export default function MenuCreate({}){
     const router =  new useRouter();
     const [Name , setName] = useState("");
@@ -43,21 +44,27 @@ async function handleOnSubmit(e) {
             body: formData
         }).then(r => r.json());
         const image = data.secure_url
-        const menus ={
-            method: "POST",
-            body: JSON.stringify({
-                Name : Name,
-                Cusine : Cusine,
-                Halal : Halal,
-                Image : image
-            }),
-            headers:{
-                'Content-Type':'application/json'
-            }
-        }
-        fetch('http://127.0.0.1:8000/api/menu',menus).
-        then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
-        router.push('/Admin/Menus')
+        // const menus ={
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         Name : Name,
+        //         Cusine : Cusine,
+        //         Halal : Halal,
+        //         Image : image
+        //     }),
+        //     headers:{
+        //         'Content-Type':'application/json'
+        //     }
+        // }
+        // fetch('http://127.0.0.1:8000/api/menu',menus).
+        // then(res=>res.json()).then(response=>console.log(`response`,response)).catch(console.error())
+        Posthandler('menu', {
+            Name : Name,
+            Cusine : Cusine,
+            Halal : Halal,
+            Image : image
+        }).finally(router.push('/Admin/Menus'))
+        
     }
     const handleOnReset = (e) =>{
         router.push('/Admin/Menus');

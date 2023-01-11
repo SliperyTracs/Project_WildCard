@@ -32,5 +32,5 @@
         "node_modules{,/**}"
     ],
     "appService.defaultWebAppToDeploy": "",
-    "appService.deploySubpath": "wildcard_frontend"
+    "appService.deploySubpath": ""
 }
